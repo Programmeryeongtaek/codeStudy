@@ -19,17 +19,9 @@ const menu = {
 
 let totalPrice = 0;
 let deliveryPrice = 2500; // 배달료 구간이 하나밖에 없으므로
-let result = 0;
+let result = totalPrice + deliveryPrice;
 
-let jjambbongPrice = menu.jjambbong;
-let jjajangmyeonPrice = menu.jjajangmyeon;
-let tangsuyukPrice = menu.tangsuyuk;
-//let {jjambbong, jjajangmyeon, tangsuyuk} = menu;
-let costArr = [jjambbongPrice, jjajangmyeonPrice, tangsuyukPrice];
-
-let jjambbongCnt = 0;
-let jjajangmyeonCnt = 0;
-let tangsuyukCnt = 0;
+let costArr = [menu.jjambbong, menu.jjajangmyeon, menu.tangsuyuk];
 
 // 주문 갯수에 따라 가격이 달라지므로, 매개변수로 설정
 function order(jjambbongCnt, jjajangmyeonCnt, tangsuyukCnt) {
