@@ -19,44 +19,30 @@ const menu = {
 
 let totalPrice = 0;
 let deliveryPrice = 2500; // 배달료 구간이 하나밖에 없으므로
-let result = totalPrice + deliveryPrice;
 
 let costArr = [menu.jjambbong, menu.jjajangmyeon, menu.tangsuyuk];
 
 // 주문 갯수에 따라 가격이 달라지므로, 매개변수로 설정
 function order(jjambbongCnt, jjajangmyeonCnt, tangsuyukCnt) {
-  // 객체 -> 배열
+  // 객체의 요소를 반복문으로 추출
   let menuArr = [];
   for (let i = 0; i < menu.length; i++) {
     menuArr.push(menu[i]); // jjambbong, jjajangmyeon, tangsuyuk
   }
 
-  //let menuArr = Object.keys(menu);
-  //  let menuArr = [];
-  //  for(let item in menu) {
-  //    menuArr.push(item); // jjambbong, jjajangmyeon, tangsuyuk
-  //  }
   // 메뉴 선택에 따른 비용과 남은 선택 갯수
   let orderCnt = jjambbongCnt + jjajangmyeonCnt + tangsuyukCnt;
   if (orderCnt <= 9) {
-    if (jjambbongCnt) {
-      totalPrice += jjambbongCnt * jjambbongPrice;
-      orderCnt -= jjambbongCnt;
-    }
-    if (jjajangmyeonCnt) {
-      totalPrice += jjajangmyeonCnt * jjajangmyeonPrice;
-      orderCnt -= jjajangmyeonCnt;
-    }
-    if (tangsuyukCnt) {
-      totalPrice += tangsuyukCnt * tangsuyukPrice;
-      orderCnt -= tangsuyukCnt;
-    }
+    totalPrice += jjambbongCnt * costArr[0];
+    totalPrice += jjajangmyeonCnt * costArr[1];
+    totalPrice += tangsuyukCnt * costArr[2];
     // 총 주문 금액에 따라 배달료 부과
     // 최소 주문금액이 5000원이므로 if - else로 구분하려 했으나,
     // 조건식 간결화를 위해 if - else if문으로 채택!
-    if (totalPrice >= 12000) result = totalPrice;
-    else if (totalPrice >= 5000) result = totalPrice + deliveryPrice;
+    if (totalPrice >= 12000) deliveryPrice = 0;
+    else if (totalPrice >= 5000) deliveryPrice;
     else console.log(`최소 주문금액은 5,000원 입니다.`);
+    result = totalPrice + deliveryPrice;
     console.log(result);
   }
   // 10개 이상은 주문할 수 없음.
